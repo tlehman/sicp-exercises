@@ -1,5 +1,3 @@
-; by tlehman
-; 
 ; Exercise 1.1: What is the result printed by the interpreter 
 10
 ; => 12

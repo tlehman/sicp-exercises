@@ -4,7 +4,21 @@
 (define (f n) 
   (if (< n 3)
       n
-      (+ (f (- n 1)) (* 2 (- n 2)) (* 3 (- n 3)))))
+      (+ (f (- n 1)) (* 2 (- n 2)) (* 3 (- n 3)))))  ; Find solution to linear recurrence analytically
+
+;(map f '(1 2 3 4 5 6 7 8))
+; => (1 2 4 11 23 40 62 89)
+
+(define (f n)
+  (define (f-iter a b c count)
+    (if (= count 0)
+	c
+	(f-iter a b c (- count 1))))   ;; FIX
+    
+  (if (< n 3)
+      n
+      (f-iter a b c (- count)
+      
 ;
 ; (map f '(0 1 2 3 4 5 6 7 8 9))
 ; => (0 1 2 4 11 23 40 62 89 121)
@@ -28,5 +42,4 @@
 
 ; (map fib '(0 1 2 3 4 5 6 7 8))
 ; => (0 1 1 2 3 5 8 13 21)
-
 

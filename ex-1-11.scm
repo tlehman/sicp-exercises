@@ -1,5 +1,16 @@
 ; Exercise 1.11: 
-;   the Fibonacci numbers, computed tree-recursively:
+;   A function f is defined by the rule that f(n)=n if n < 3 and f(n) = f(n-1)+2f(n-2)+3f(n-3) if n >= 3. Write a procedure that computes f by means of a recursive process. Write a procedure that computes f by means of an iterative process.
+
+(define (f n) 
+  (if (< n 3)
+      n
+      (+ (f (- n 1)) (* 2 (- n 2)) (* 3 (- n 3)))))
+;
+; (map f '(0 1 2 3 4 5 6 7 8 9))
+; => (0 1 2 4 11 23 40 62 89 121)
+
+
+;  the Fibonacci numbers, computed tree-recursively:
 
 (define (fib n)
   (cond ((= n 0) 0)
@@ -17,6 +28,5 @@
 
 ; (map fib '(0 1 2 3 4 5 6 7 8))
 ; => (0 1 1 2 3 5 8 13 21)
-
 
 

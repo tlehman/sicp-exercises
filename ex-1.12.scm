@@ -21,8 +21,14 @@
   (cons 1 (pascal-cdr row)))
 
 
-(pascal '())                                      ; => (1)
-(pascal (pascal '()))                             ; => (1 1)
-(pascal (pascal (pascal '())))                    ; => (1 2 1)
-(pascal (pascal (pascal (pascal '()))))           ; => (1 3 3 1)
-(pascal (pascal (pascal (pascal (pascal '())))))  ; => (1 4 6 4 1)
+(load "utils.scm")
+
+(define (pascals-triangle n)
+  (define (nth-pascal-row n)
+    (if (= n 0)
+	'()
+	(pascal (nth-pascal-row	(- n 1)))))
+  (map nth-pascal-row (range n)))
+
+; (pascals-triangle 5)
+; => (() (1) (1 1) (1 2 1) (1 3 3 1) (1 4 6 4 1))

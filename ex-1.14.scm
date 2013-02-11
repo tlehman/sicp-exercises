@@ -2,18 +2,3 @@
 
 (load "count-change.scm")
 
-(count-change 11)
-
-(cc 11 5)
-
-(+ (cc 11 (- kinds-of-coins 1))
-   (cc (- 11 (first-denomination 5)) 5))
-
-(+ (cc 11 4)
-   (cc (- 11 50) 5))
-
-; Idea, make code analyzer that takes a 
-; (define a b)  expression and replaces a 
-; with b.
-
-

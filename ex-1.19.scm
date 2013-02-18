@@ -26,7 +26,7 @@
 		   (q-prime p q)
 		   (/ count 2)))
 	(else (fib-iter (+ (* b q) (* a q) (* a p))
-			(+ (* b q) (* a b))
+			(+ (* b q) (* a q))
 			p
 			q
 			(- count 1)))))
@@ -45,31 +45,19 @@
 	  (b (car (cdr ab))))
 	  
       (list `(+ (* ,b ,q) (* ,a ,q) (* ,a ,p))
-	    `(+ (* ,b ,q) (* ,a ,b))
+	    `(+ (* ,b ,q) (* ,a ,q))
 	    ))))
 
 
 ; T_pq applied once to (a b)
 ;
 ;1 ]=> ((T 'p 'q) (list 'a 'b))
-;Value 7: ((+ (* b q) (* a q) (* a p)) (+ (* b q) (* a b)))
-
+;Value 2: ((+ (* b q) (* a q) (* a p)) (+ (* b q) (* a q)))
 
 
 
 ; T_pq applied twice to (a b);
 ;
 ;1 ]=> ((T 'p 'q) ((T 'p 'q) (list 'a 'b)))
-;Value 8: ((+ (* (+ (* b q) (* a b)) q) (* (+ (* b q) (* a q) (* a p)) q) (* (+ (* b q) (* a q) (* a p)) p)) (+ (* (+ (* b q) (* a b)) q) (* (+ (* b q) (* a q) (* a p)) (+ (* b q) (* a b)))))
-;
-; The prettyfied expression:
-; 
-;; ((+ 
-;;   (* (+ (* b q) (* a b)) q) 
-;;   (* (+ (* b q) (* a q) (* a p)) q) 
-;;   (* (+ (* b q) (* a q) (* a p)) p))
- 
-;;  (+ 
-;;   (* (+ (* b q) (* a b)) q)
-;;   (* (+ (* b q) (* a q) (* a p)) (+ (* b q) (* a b))))
-;; )
+;Value 3: ((+ (* (+ (* b q) (* a q)) q) (* (+ (* b q) (* a q) (* a p)) q) (* (+ (* b q) (* a q) (* a p)) p)) (+ (* (+ (* b q) (* a q)) q) (* (+ (* b q) (* a q) (* a p)) q)))
+

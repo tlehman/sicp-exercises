@@ -34,3 +34,5 @@
 (define (p-prime p q) '())
 
 (define (q-prime p q) '())
+
+; Bookmark sicp.pdf:79

@@ -14,28 +14,6 @@
 ; This gives us an explicit way to square these transformations, and thus we can compute T^n using successive squaring, as in the fast-expt procedure.
 ; 
 ; Put this all together to complete the following procedure, which runs in a logarithmic number of steps:
-(define (fib n)
-  (fib-iter 1 0 0 1 n))
-
-(define (fib-iter a b p q count)
-  (cond ((= count 0) b)
-	((even? count)
-	 (fib-iter a
-		   b
-		   (p-prime p q)
-		   (q-prime p q)
-		   (/ count 2)))
-	(else (fib-iter (+ (* b q) (* a q) (* a p))
-			(+ (* b q) (* a q))
-			p
-			q
-			(- count 1)))))
-
-(define (p-prime p q) '())
-
-(define (q-prime p q) '())
-
-; Bookmark sicp.pdf:79
 
 
 
@@ -45,7 +23,7 @@
 	  (b (car (cdr ab))))
 	  
       (list `(+ (* ,b ,q) (* ,a ,q) (* ,a ,p))
-	    `(+ (* ,b ,q) (* ,a ,q))
+	    `(+ (* ,b ,p) (* ,a ,q))
 	    ))))
 
 
@@ -61,3 +39,48 @@
 ;1 ]=> ((T 'p 'q) ((T 'p 'q) (list 'a 'b)))
 ;Value 3: ((+ (* (+ (* b q) (* a q)) q) (* (+ (* b q) (* a q) (* a p)) q) (* (+ (* b q) (* a q) (* a p)) p)) (+ (* (+ (* b q) (* a q)) q) (* (+ (* b q) (* a q) (* a p)) q)))
 
+; Using some linear algebra, we can easily solve this problem without code.
+; 
+; Observe that the action of T_pq on (a,b) is linear, since T_pq(a,b)
+;   a <--- bq + aq + ap = (p+q)a + qb
+;   b <--- bp + aq      = aa     + pb
+; Therefore, T_pq is a 2x2 matrix: 
+;          
+;  T_pq  =  | (p+q)  q |
+;           |   q    p |,  squaring the matrix, we get:
+; 
+;  T_pq^2 = | ((p+q)^2 + q^2)   (p+q)q + pq  |
+;           |   (p+q)q + pq        p^2 + q^2 |
+;
+; Note that ((p+q)^2 + q^2) = (p^2 + q^2) + (2pq + q^2)
+; 
+; Then, from this we can derive the values of p' and q' in terms of p and q:
+;  
+;  p' = p^2 + q^2
+;  q' = 2pq + q^2
+; 
+; Then we can re-write T_pq^2 as T_p'q' = | p'+q'  q' |
+;                                         |   q'   p' |
+
+(define (fib n)
+  (fib-iter 1 0 0 1 n))
+
+(define (p-prime p q) (+ (* p p) (* q q)))
+(define (q-prime p q) (+ (* 2 (* p q)) (* q q)))
+
+(define (fib-iter a b p q count)
+  (cond ((= count 0) b)
+	((even? count)
+	 (fib-iter a
+		   b
+		   (p-prime p q)
+		   (q-prime p q)
+		   (/ count 2)))
+	(else (fib-iter (+ (* b q) (* a q) (* a p))
+			(+ (* b p) (* a q))
+			p
+			q
+			(- count 1)))))
+
+;1 ]=> (map fib '(1 2 3 4 5 6 7 8 9))
+;Value 4: (1 1 2 3 5 8 13 21 34)

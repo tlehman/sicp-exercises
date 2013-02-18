@@ -40,8 +40,36 @@
 
 
 (define (T p q)
-  (lambda (pair)
-    (let ((a (car pair))
-	  (b (cdr pair)))
-      (cons `(+ (* ,b ,q) (* ,a ,q) (* ,a ,p))
-	    `(+ (* ,b ,q) (* ,a ,b))))))
+  (lambda (ab)
+    (let ((a (car ab))
+	  (b (car (cdr ab))))
+	  
+      (list `(+ (* ,b ,q) (* ,a ,q) (* ,a ,p))
+	    `(+ (* ,b ,q) (* ,a ,b))
+	    ))))
+
+
+; T_pq applied once to (a b)
+;
+;1 ]=> ((T 'p 'q) (list 'a 'b))
+;Value 7: ((+ (* b q) (* a q) (* a p)) (+ (* b q) (* a b)))
+
+
+
+
+; T_pq applied twice to (a b);
+;
+;1 ]=> ((T 'p 'q) ((T 'p 'q) (list 'a 'b)))
+;Value 8: ((+ (* (+ (* b q) (* a b)) q) (* (+ (* b q) (* a q) (* a p)) q) (* (+ (* b q) (* a q) (* a p)) p)) (+ (* (+ (* b q) (* a b)) q) (* (+ (* b q) (* a q) (* a p)) (+ (* b q) (* a b)))))
+;
+; The prettyfied expression:
+; 
+;; ((+ 
+;;   (* (+ (* b q) (* a b)) q) 
+;;   (* (+ (* b q) (* a q) (* a p)) q) 
+;;   (* (+ (* b q) (* a q) (* a p)) p))
+ 
+;;  (+ 
+;;   (* (+ (* b q) (* a b)) q)
+;;   (* (+ (* b q) (* a q) (* a p)) (+ (* b q) (* a b))))
+;; )

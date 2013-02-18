@@ -36,3 +36,12 @@
 (define (q-prime p q) '())
 
 ; Bookmark sicp.pdf:79
+
+
+
+(define (T p q)
+  (lambda (pair)
+    (let ((a (car pair))
+	  (b (cdr pair)))
+      (cons `(+ (* ,b ,q) (* ,a ,q) (* ,a ,p))
+	    `(+ (* ,b ,q) (* ,a ,b))))))

@@ -10,6 +10,7 @@
 
 ; Do the same for applicative order evaluation, compare the number of times remainder is called.
 
+; TODO: Use macros to simulate normal-order evaluation
 
 
 

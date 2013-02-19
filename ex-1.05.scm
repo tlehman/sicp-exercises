@@ -1,4 +1,4 @@
-; Exercise 1.5: There is a test to determine whether the interpreterone is faced with is using applicative-order evaluation or normal-order evaluation. The following two procedures:
+; Exercise 1.5: There is a test to determine whether the interpreter one is faced with is using applicative-order evaluation or normal-order evaluation. The following two procedures:
 
 (define (p) (p))
 (define (test x y)

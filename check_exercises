@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+require 'colorize'
+
+CHAPTERS = {1 => (1..46),
+            2 => (1..97),
+            3 => (1..82),
+            4 => (1..79),
+            5 => (1..52)}
+
+
+def show_completed_for_chapter(chapter)
+  files = `git ls-files | egrep 'ex-.*scm'`.split
+  for exercise in CHAPTERS[chapter]
+    ex_file = "ex-#{chapter}.#{exercise}.scm"
+    color = (files.member? ex_file) ? :green : :red
+    puts ex_file.send(color)
+  end
+end
+
+show_completed_for_chapter(1)
+

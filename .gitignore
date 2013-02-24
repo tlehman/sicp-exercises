@@ -2,3 +2,5 @@
 *.\~
 *#*
 *.png
+.rbx
+.DS_Store

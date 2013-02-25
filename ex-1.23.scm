@@ -15,9 +15,9 @@
 	((> (square d) n) n)
 	(else (find-divisor n (next d)))))
 
-(search-for-primes 100000000001 999999999999)
-(search-for-primes 100000000000001 999999999999999)
-(search-for-primes 100000000000000001 999999999999999999)
+;; (search-for-primes 100000000001 999999999999)
+;; (search-for-primes 100000000000001 999999999999999)
+;; (search-for-primes 100000000000000001 999999999999999999)
 
 ;; The data: 
 ;;
@@ -33,10 +33,22 @@
 ;; 100000000000000013 *** 11123
 ;; 100000000000000019 *** 11017
 
+(define (average a b c) (/ (+ a b c) 3.0))
+(define (ratio m n) (/ m n))
+(ratio
+ 16556.33
+ (average 11240 11123 11017))   ;Value: 1.4879865188735772
+
+(ratio
+ 514.67
+ (average 347 348 347))         ;Value: 1.4817754318618042
+
+
 ; Is this expectation confirmed?
+;; No.
 
 ; If not, what is the observed ratio of the speeds of the speeds of the two algorithms, and how do you explain the fact that it is different from 2?
+;; It ran faster, but only 1.48 times faster. Not sure why this is the case.
 
-; TODO: Finish this problem
 
 (newline)

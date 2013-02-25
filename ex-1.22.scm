@@ -1,15 +1,20 @@
 ; Exercise 1.22: Most Lisp implementations include a primitive called runtime that returns an integer that specifies the amount of time the system has been running. The following timed-prime-test procedure, when called with an integer n, prints n and checks to see if n is prime. If n is prime, the procedure prints three asterisks followed by the amount of time used in performing the test.
 
 (load "helpers.scm")
+(define (runtime) (tms:clock (times)))
 
 (define (timed-prime-test n)
-  (newline)
-  (display n)
   (start-prime-test n (runtime)))
+
+(define primes-found 0)
 
 (define (start-prime-test n start-time)
   (if (prime? n)
-      (report-prime (- (runtime) start-time))))
+      (begin
+	(set! primes-found (+ primes-found 1))
+	(newline)
+	(display n)
+	(report-prime (- (runtime) start-time)))))
 
 (define (report-prime elapsed-time)
   (display " *** ")
@@ -23,10 +28,12 @@
 ;larger than 1,000,00;
 
 (define (search-for-primes lower-bound upper-bound)
-  (if (<= lower-bound upper-bound)
+  (if (and (<= lower-bound upper-bound) (< primes-found 3))
       (begin (timed-prime-test lower-bound)
 	     (search-for-primes (+ lower-bound 2) upper-bound))))
-      
+
+(search-for-primes 1001 9999)
+
 ; Note the time needed for each prime. Since the testing algorithm has order of growth Theta(sqrt(n)), you should expect that the testing for primes around 10,000 should take about sqrt(10) ~= 3.16227 as long as testing for primes around 1000.
 
 ; Do your timing data bear this out?
@@ -34,3 +41,7 @@
 ; How well do the data for 100,000 and 1,000,000 support the Theta(sqrt(n)) prediction?
 
 ; Is your result compatible with the notion that programs on your machine run in time proportional to the number of steps required for the computation?
+
+; TODO: Finish me
+
+(newline)

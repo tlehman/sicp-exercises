@@ -1,6 +1,7 @@
 ; Exercise 1.22: Most Lisp implementations include a primitive called runtime that returns an integer that specifies the amount of time the system has been running. The following timed-prime-test procedure, when called with an integer n, prints n and checks to see if n is prime. If n is prime, the procedure prints three asterisks followed by the amount of time used in performing the test.
 
 (load "helpers.scm")
+
 (define (runtime) (tms:clock (times)))
 
 (define (timed-prime-test n)
@@ -34,9 +35,9 @@
 	(set! primes-found 0)
 	(newline))))
 
-(search-for-primes 100000000001 999999999999)
-(search-for-primes 100000000000001 999999999999999)
-(search-for-primes 100000000000000001 999999999999999999)
+;(search-for-primes 100000000001 999999999999)
+;(search-for-primes 100000000000001 999999999999999)
+;(search-for-primes 100000000000000001 999999999999999999)
 
 
 ; Note the time needed for each prime. Since the testing algorithm has order of growth Theta(sqrt(n)), you should expect that the testing for primes around 1e12 should take about sqrt(10) as long as testing for primes around 1e15. For the record, sqrt(10) is about 3.1
@@ -74,4 +75,3 @@
 ;; Yes, see data and answers above.
 
 
-(newline)

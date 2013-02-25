@@ -65,14 +65,13 @@
 ;; The average ratio between jumps of three orders of magnitude is 31.87
 
 ; Do your timing data bear this out?
-
+;; Yes, since the increase in n by a factor of 1000 yielded an increase in the running time by sqrt(1000)=31.6227824. 
 
 ; How well do the data for 100,000 and 1,000,000 support the Theta(sqrt(n)) prediction?
-
+;; Extremely well, the percent difference between the observed and theoretical values is about 0.7%, or less than 1% error.
 
 ; Is your result compatible with the notion that programs on your machine run in time proportional to the number of steps required for the computation?
-;;
+;; Yes, see data and answers above.
 
-; TODO: Finish me
 
 (newline)

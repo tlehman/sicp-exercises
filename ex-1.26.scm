@@ -14,6 +14,4 @@
 
 ; "I don't see what difference that could make," says Louis. "I do." says Eva. "By writing the procedure like that, you have transformed the Theta(log(n)) process into a Theta(n) process". Explain
 
-;; 
-
-; TODO: Finish this
+;; Because of applicative-order evaluation, the expression (expmod base (/ exp 2) m) is computed twice. If Louis had used (square (expmod base (/ exp 2))), the expression (expmod base (/ exp 2)) would only be evaluated once, and the result would be squared. As a result, the double evaluation cancels out the gains in speed we get by using the successive squaring method.

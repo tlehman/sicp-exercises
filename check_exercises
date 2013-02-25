@@ -14,6 +14,10 @@ def show_completed_for_chapter(chapter)
     exercise = "0" + exercise.to_s if exercise < 10
     ex_file = "ex-#{chapter}.#{exercise}.scm"
     color = (files.member? ex_file) ? :green : :red
+    if (color == :green) && (`grep "TODO:" #{ex_file}` != "")
+      color = :yellow
+    end
+
     puts ex_file.send(color)
   end
 end

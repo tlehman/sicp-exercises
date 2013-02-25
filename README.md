@@ -6,3 +6,12 @@ Since Lisp is basically a mathematical formalism implemented in a machine, it wi
 
 This repository is where I work out the exercises, I have not finished the book, but as I progress, the git log will tell the tale of my studies.
 
+# Technical Details
+
+## Scheme Interpreters Used
+
+ - MIT/GNU Scheme 15.3
+ - GNU Guile 1.8.8
+ - [ex-scheme 0.0.3](https://github.com/tlehman/ez-scheme)
+ 
+

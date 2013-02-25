@@ -21,4 +21,16 @@
 ;larger than 10,000; 
 ;larger than 100,000; 
 ;larger than 1,000,00;
+
+(define (search-for-primes lower-bound upper-bound)
+  (if (<= lower-bound upper-bound)
+      (begin (timed-prime-test lower-bound)
+	     (search-for-primes (+ lower-bound 2) upper-bound))))
       
+; Note the time needed for each prime. Since the testing algorithm has order of growth Theta(sqrt(n)), you should expect that the testing for primes around 10,000 should take about sqrt(10) ~= 3.16227 as long as testing for primes around 1000.
+
+; Do your timing data bear this out?
+
+; How well do the data for 100,000 and 1,000,000 support the Theta(sqrt(n)) prediction?
+
+; Is your result compatible with the notion that programs on your machine run in time proportional to the number of steps required for the computation?

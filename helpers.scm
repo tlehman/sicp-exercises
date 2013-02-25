@@ -1,3 +1,5 @@
+(define (even? n) (= (remainder n 2) 0))
+(define (odd? n) (= (remainder n 2) 1))
 (define (divides? d n) (= (remainder n d) 0))
 (define (square n) (* n n))
 (define (cube n) (* n n n))

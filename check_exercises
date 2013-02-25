@@ -11,6 +11,7 @@ CHAPTERS = {1 => (1..46),
 def show_completed_for_chapter(chapter)
   files = `git ls-files | egrep 'ex-.*scm'`.split
   for exercise in CHAPTERS[chapter]
+    exercise = "0" + exercise.to_s if exercise < 10
     ex_file = "ex-#{chapter}.#{exercise}.scm"
     color = (files.member? ex_file) ? :green : :red
     puts ex_file.send(color)

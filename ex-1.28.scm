@@ -18,18 +18,27 @@
   (let ((bem
 	 (cond ((= exp 0) 1)
 	       ((even? exp)
-	       (remainder (square (expmod base (/ exp 2) m))
-			  m))
-	      (else
-	       (remainder (* base (expmod base (- exp 1) m))
-			  m)))))
-    (if (and (not (= base 1))
-	     (not (= base (- m 1)))
-	     (= bem 1))
-	0
-	bem)))
+		(remainder (square (expmod base (/ exp 2) m))
+			   m))
+	       (else
+		(remainder (* base (expmod base (- exp 1) m))
+			   m)))))
+    bem))
 
 
+; if n not prime => [ a^(n-1)=1(mod n) for at least half of a < n ]
+; [ a^(n-1)!=1(mod n) for all a < n ] => n is prime
+(define (prime? n)
+  
+  (define (miller-rabin-test a n)
+    (expmod a n n)                   ; a^n mod n
+    
 
-; TODO: Finish this
+  (define (try-miller-rabin-test a n)
+    (if (= a n) #t
+	(and
+	 (miller-rabin-test a n)
+       (try-miller-rabin-test (+ a 1) n))))
 
+
+  (try-miller-rabin-test 1 n))

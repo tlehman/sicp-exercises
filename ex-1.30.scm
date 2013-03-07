@@ -3,10 +3,13 @@
 
 (define (sum term a next b)
   (define (iter a result)
-    (if (= a b)
-        0
-        (iter (next a) (+ a result))))
-  (iter 0 0))
+    (if (> a b)
+        result
+        (iter (next a) (+ (term a) result))))
+  (iter a 0))
 
+(define (id n) n)
+(define (next n) (+ n 1))
 
-; TODO: Finish
+; (sum id 1 next 5)
+; => 15

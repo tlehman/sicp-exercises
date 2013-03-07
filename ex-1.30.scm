@@ -9,7 +9,7 @@
   (iter a 0))
 
 (define (id n) n)
-(define (next n) (+ n 1))
+(define (inc n) (+ n 1))
 
-; (sum id 1 next 5)
+; (sum id 1 inc 5)
 ; => 15

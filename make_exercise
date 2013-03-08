@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+CHAPTERS = {1 => (1..46),
+            2 => (1..97),
+            3 => (1..82),
+            4 => (1..79),
+            5 => (1..52)}
+
+exnum = ARGV[0] 
+
+filename = "ex-#{exnum}.scm"
+
+contents = "; Exercise #{exnum} : \n\n ; TODO: Finish this EOF"
+
+if exnum =~ /\b\d\.\d{2,2}\b/
+  unless File.exists?(filename)
+    # create
+  else
+    puts "#{filename} already exists"
+  end
+else
+  puts "Usage: "
+  puts "  ./make_exercise 1.32"
+end
+

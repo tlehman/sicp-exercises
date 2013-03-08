@@ -14,7 +14,8 @@ contents = "; Exercise #{exnum} : \n\n ; TODO: Finish this EOF"
 
 if exnum =~ /\b\d\.\d{2,2}\b/
   unless File.exists?(filename)
-    # create
+    File.new(filename, "w+").write(contents)
+    system("git add #{filename}")
   else
     puts "#{filename} already exists"
   end

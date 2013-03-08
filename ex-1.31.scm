@@ -11,7 +11,7 @@
 (define (factorial n)
   (product id 1 inc n))
 
-(display (factorial 3))
+;(display (factorial 3))
 
 ; Also use product to compute approximations to π using the formula:
 ;
@@ -24,7 +24,18 @@
 (define (pi-approx steps)
   (let ((f    (lambda (n) (/ (* n (+ n 2)) (* (+ n 1) (+ n 1)))))
         (next (lambda (n) (+ n 2))))
-    (product f 2.0 next steps)))
+    (* 4 (product f 2.0 next steps))))
 
-(display (pi-approx 3))
+;(display (pi-approx 20000000))
+; 3.14159273214518
+
+; 1.31(b) If your product procedure generates a recursive process, write one that generates an iterative process, or vice versa.
+; Since product generates an iterative process, I will re-write it using an iterative process.
+(define (product f a next b)
+  (if (> a b)
+    1
+    (* (f a) (product f (next a) next b))))
+
+;(display (pi-approx 20000))
+; 3.14159273214518
 

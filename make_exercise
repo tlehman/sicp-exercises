@@ -10,7 +10,7 @@ exnum = ARGV[0]
 
 filename = "ex-#{exnum}.scm"
 
-contents = "; Exercise #{exnum} : \n\n ; TODO: Finish this EOF"
+contents = "; Exercise #{exnum}: \n\n ; TODO: Finish this EOF"
 
 if exnum =~ /\b\d\.\d{2,2}\b/
   unless File.exists?(filename)

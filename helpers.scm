@@ -6,6 +6,7 @@
 (define (square n) (* n n))
 (define (cube n) (* n n n))
 (define (invert n) (/ 1 n))
+(define (average a b) (/ (+ a b) 2))
 
 (define (find-divisor n d)
   (cond ((divides? d n) d)

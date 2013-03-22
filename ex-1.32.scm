@@ -4,7 +4,8 @@
 ; Accumulate takes as arguments the same term and range specifications as sum and product, together with a combiner procedure (of two arguments) that specifies how the current term is to be combined with the accumulation of the preceding terms and a null-value that specifies what base value to use when the terms run out. 
 ;
 ; Write accumulate and show how sum and product can both be defined as simple calls to accumulate.
-;
+;                                           range
+;                    binOp      unit    ,-----------,
 (define (accumulate combiner null-value term a next b)
   (define (iter a result)
     (if (> a b)
@@ -24,8 +25,8 @@
 ; 15
 
 
-;(display (product id 1 inc 5))
-;(display "\n")
+(display (product id 1 inc 5))
+(display "\n")
 ; 120
 
 ; Exercise 1.32(b): If your accumulate procedure generates a recursive process, write one that generates an iterative process, or vice-versa.

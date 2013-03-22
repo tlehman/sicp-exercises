@@ -1,3 +1,5 @@
+(define (id x) x)
+(define (inc n) (+ n 1))
 (define (even? n) (= (remainder n 2) 0))
 (define (odd? n) (= (remainder n 2) 1))
 (define (divides? d n) (= (remainder n d) 0))
@@ -13,7 +15,9 @@
 (define (smallest-divisor n)
   (find-divisor n 2))
 
-(define (prime? n) (= n (smallest-divisor n)))
+(define (prime? n) (and 
+                     (= n (smallest-divisor n))
+                     (> n 1)))
 
 
 (define (expmod base exp m)

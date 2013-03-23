@@ -30,10 +30,34 @@
 ;
 ; For succesive values of k.
 ;
+(define (cont-frac n d k)
+  (if (= k 1)
+      (/ (n k) (d k))
+      (/ (n k) (+ (d k) (cont-frac n d (- k 1))))))
+
 ; How large must you make k in order to get an approximation that is accurate 
 ; to 4 decimal places?
 ;
-;    NOTE: Compute until the difference between steps is < 0.00001
+;    NOTE: Compute until the difference between steps is < 0.0001
+
+(define (one-over-phi-approx)
+  (define (n k) 1.0)
+  (define (d k) 1.0)
+  (define (close-enough? x y) (< (abs (- x y)) 0.0001))
+
+  (define (try k)
+    (let ((current (cont-frac n d k))
+          (next    (cont-frac n d (+ k 1))))
+      (if (close-enough? current next)
+          (cons next k)
+          (try (+ k 1)))))
+
+  (try 1))
+
+(display (one-over-phi-approx))
+; (0.618055555555556 . 10)
+;    the answer to 1.37a is k = 10
+
 ;
 ; b. If your cont-frac procedure generates a recursive process, write one that 
 ; generates an iterative process. If it generates an iterative process, write 

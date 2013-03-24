@@ -15,14 +15,15 @@
 ; expansion after a given number of terms. Such a truncation is called a 
 ; k-term finite continued fraction.
 ;
-; Suppose that n and d are procedures of one argument (the term index i) such that 
+; Suppose that n and d are procedures of one argument (the term index i) such
+; that: 
 ;
 ;     (n i) = Nᵢ
 ;     (d i) = Dᵢ
 ;
-; a. Define a procedure conf-frac such that evaluating (cont-frac n d k) computes 
-; the value of the k-term finite continued fraction. Check your procedure by 
-; approximating 1/φ using 
+; a. Define a procedure cont-frac such that evaluating 
+; (cont-frac n d k) computes the value of the k-term finite continued 
+; fraction. Check your procedure by approximating 1/φ using 
 ;
 ;   (cont-frac (lambda (i) 1.0)
 ;              (lambda (i) 1.0)
@@ -31,9 +32,12 @@
 ; For succesive values of k.
 ;
 (define (cont-frac n d k)
-  (if (= k 1)
+  (define (recurse i)
+    (if (= i k)
       (/ (n k) (d k))
-      (/ (n k) (+ (d k) (cont-frac n d (- k 1))))))
+      (/ (n i) (+ (d i) (recurse (+ i 1))))))
+
+  (recurse 1))
 
 ; How large must you make k in order to get an approximation that is accurate 
 ; to 4 decimal places?
@@ -49,7 +53,7 @@
     (let ((current (cont-frac n d k))
           (next    (cont-frac n d (+ k 1))))
       (if (close-enough? current next)
-          (cons next k)
+	  next
           (try (+ k 1)))))
 
   (try 1))
@@ -63,6 +67,17 @@
 ; generates an iterative process. If it generates an iterative process, write 
 ; one that generates a recursive process.
 
+(define (cont-frac-iterative n d k)
+  (define (iterate i result)
+    (if (= i k)
+	result
+        (iterate (+ i 1) (/ (n i) (+ (d i) result)))))
+
+  (iterate 1 0))
 
 
- ; TODO: Finish this EOF
+(display
+ (cont-frac (lambda (x) 1.0)
+	    (lambda (x) 1.0)
+	    5))
+

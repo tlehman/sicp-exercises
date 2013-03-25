@@ -8,8 +8,9 @@ CHAPTERS = {1 => (1..46),
             5 => (1..52)}
 
 
-def show_completed_for_chapter(chapter)
+def show_for_chapter(chapter, mode=:all)
   files = `git ls-files | egrep 'ex-.*scm'`.split
+
   for exercise in CHAPTERS[chapter]
     exercise = "0" + exercise.to_s if exercise < 10
     ex_file = "ex-#{chapter}.#{exercise}.scm"
@@ -18,9 +19,9 @@ def show_completed_for_chapter(chapter)
       color = :yellow
     end
 
-    puts ex_file.send(color)
+    puts ex_file.send(color) unless (mode == :incomplete && color == :green)
   end
 end
 
-show_completed_for_chapter(1)
-
+mode = (ARGV.first == '-i') ? :incomplete : :all
+show_for_chapter(1, mode)

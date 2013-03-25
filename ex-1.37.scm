@@ -58,9 +58,9 @@
 
   (try 1))
 
-(display (one-over-phi-approx))
-; (0.618055555555556 . 10)
-;    the answer to 1.37a is k = 10
+(one-over-phi-approx)
+; (0.618055555555556. 10)
+;    the answer to 1.37a is k < 11
 
 ;
 ; b. If your cont-frac procedure generates a recursive process, write one that 
@@ -73,11 +73,10 @@
 	result
         (iterate (+ i 1) (/ (n i) (+ (d i) result)))))
 
-  (iterate 1 0))
+  (iterate 1 0.0))
 
 
-(display
- (cont-frac (lambda (x) 1.0)
-	    (lambda (x) 1.0)
-	    5))
+(cont-frac (lambda (x) 1.0)
+	   (lambda (x) 1.0)
+	   25)
 

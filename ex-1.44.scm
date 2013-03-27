@@ -6,6 +6,7 @@
 ; procedure that computes the smoothed f.
 
 (load "helpers.scm")
+(load "ex-1.43.scm")
 
 (define (smooth f)
   (lambda (x)
@@ -20,4 +21,9 @@
 ; Show how to generate the n-fold smoothed function of any given function using smooth and 
 ; repeated from Exercise 1.43
 
- ; TODO: Finish this EOF
+
+(define (n-fold-smooth f n)
+  (repeated (smooth f) n))
+
+(plot (n-fold-smooth sin 1000) 0 6.0 0.01)
+

@@ -4,7 +4,16 @@
 ; 
 ; Write a procedure smooth that takes as input a procedure that computes f and returns a 
 ; procedure that computes the smoothed f.
-; 
+
+(load "helpers.scm")
+
+(define (smooth f)
+  (lambda (x)
+    (/ (+ (f (- x dx))
+	  (f x)
+	  (f (+ x dx)))
+       3)))
+
 ; It is sometimes valuable to repeatedly smooth a function (that is, smooth the smoothed 
 ; function, and so on) to obtain that n-fold smoothed function.
 ; 

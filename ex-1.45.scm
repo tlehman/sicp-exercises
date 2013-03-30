@@ -22,7 +22,12 @@
   (fixed-point (average-damp (lambda (y) (/ x y)))) 1.0)
 
 (define (nth-root x n)
-  (fixed-point (repeated average-damp k) (lambda (y) (/ x y))))
+  (fixed-point ((repeated average-damp k) (lambda (y) (/ x y))) 2.0))
+
+;                                      ^
+; Your goal is to find k    ___________|    as a function of n
+
+
 
 ; 
 ; Use this to implement a simple procedure for computing n-th roots

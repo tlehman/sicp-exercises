@@ -24,5 +24,3 @@
 ;  For n = 0, phi^0-psi^1 = 0
 ;  For n = 1, phi - psi = sqrt(5), so (phi-psi)/sqrt(5) = 1, 
 ;  This completes the proof.
-; 
-;  TODO: Re-write in LaTeX

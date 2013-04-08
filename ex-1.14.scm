@@ -4,15 +4,11 @@
 ; 
 ; What are the orders of growth of the space and number of steps used
 ; by this process as the amount to be changed increases?
+;     Space:  O(2^n)
+;     Steps:  ???
 
 (load "count-change.scm")
 
-(count-change 11)
+(cc-graph 11 5)
 
 
-
-; make S-expression ---> tree  parser
-; convert tree ---> DOT file
-
-
-; TODO: Finish this.

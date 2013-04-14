@@ -12,6 +12,6 @@ This repository is where I work out the exercises, I have not finished the book,
 
  - MIT/GNU Scheme 15.3
  - GNU Guile 1.8.8
- - [ex-scheme 0.0.3](https://github.com/tlehman/ez-scheme)
+ - [ez-scheme 0.0.3](https://github.com/tlehman/ez-scheme)
  
 

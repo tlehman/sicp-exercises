@@ -1,4 +1,9 @@
-; Exercise 1.22: Most Lisp implementations include a primitive called runtime that returns an integer that specifies the amount of time the system has been running. The following timed-prime-test procedure, when called with an integer n, prints n and checks to see if n is prime. If n is prime, the procedure prints three asterisks followed by the amount of time used in performing the test.
+; Exercise 1.22: Most Lisp implementations include a primitive called
+; runtime that returns an integer that specifies the amount of time
+; the system has been running. The following timed-prime-test
+; procedure, when called with an integer n, prints n and checks to see
+; if n is prime. If n is prime, the procedure prints three asterisks 
+; followed by the amount of time used in performing the test. 
 
 (load "helpers.scm")
 
@@ -21,7 +26,9 @@
   (display " *** ")
   (display elapsed-time))
 
-; Using this procedure, write a procedure search-for-primes that checks the primality of consecutive odd integers in a specified range. Use your procedure to find the three smallest primes 
+; Using this procedure, write a procedure search-for-primes that
+; checks the primality of consecutive odd integers in a specified
+; range. Use your procedure to find the three smallest primes 
 
 ;larger than 1,000,000,000,000         (one trillion)
 ;larger than 1,000,000,000,000,000     (one quadrillion)
@@ -40,7 +47,10 @@
 ;(search-for-primes 100000000000000001 999999999999999999)
 
 
-; Note the time needed for each prime. Since the testing algorithm has order of growth Theta(sqrt(n)), you should expect that the testing for primes around 1e12 should take about sqrt(10) as long as testing for primes around 1e15. For the record, sqrt(10) is about 3.1
+; Note the time needed for each prime. Since the testing algorithm has
+; order of growth Theta(sqrt(n)), you should expect that the testing
+; for primes around 1e12 should take about sqrt(10) as long as testing
+; for primes around 1e15. For the record, sqrt(10) is about 3.1 
 
 ;; 100000000003 *** 17
 ;; 100000000019 *** 16
@@ -66,12 +76,14 @@
 ;; The average ratio between jumps of three orders of magnitude is 31.87
 
 ; Do your timing data bear this out?
-;; Yes, since the increase in n by a factor of 1000 yielded an increase in the running time by sqrt(1000)=31.6227824. 
+;; Yes, since the increase in n by a factor of 1000 yielded an
+;; increase in the running time by sqrt(1000)=31.6227824.  
 
 ; How well do the data for 100,000 and 1,000,000 support the Theta(sqrt(n)) prediction?
-;; Extremely well, the percent difference between the observed and theoretical values is about 0.7%, or less than 1% error.
+;; Extremely well, the percent difference between the observed and
+;; theoretical values is about 0.7%, or less than 1% error. 
 
-; Is your result compatible with the notion that programs on your machine run in time proportional to the number of steps required for the computation?
-;; Yes, see data and answers above.
-
+; Is your result compatible with the notion that programs on your
+; machine run in time proportional to the number of steps required for
+; the computation? Yes, see data and answers above. 
 

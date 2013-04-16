@@ -6,7 +6,8 @@
   (remainder (fast-expt base exp) m)) 
 
 ; Is she correct?
+;   Yes.
 
 ; Would this procedure serve as well for our fast prime tester? Explain.
-
-; TODO: Finish this
+;   No, since it has to compute the whole exponentiation and then take
+;   the remainder, this is not as fast as expmod defined in helpers.scm

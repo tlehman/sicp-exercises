@@ -20,13 +20,13 @@
   (accumulate * 1 f a next b))
 
 (load "ex-1.30.scm")   ; to get the id and inc functions
-(display (sum id 0 inc 5))
-(display "\n")
+;(display (sum id 0 inc 5))
+;(display "\n")
 ; 15
 
 
-(display (product id 1 inc 5))
-(display "\n")
+;(display (product id 1 inc 5))
+;(display "\n")
 ; 120
 
 ; Exercise 1.32(b): If your accumulate procedure generates a recursive process, write one that generates an iterative process, or vice-versa.

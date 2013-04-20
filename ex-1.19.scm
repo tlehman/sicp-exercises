@@ -63,6 +63,15 @@
 ; 
 ;  T_pq^2 = | ((p+q)^2 + q^2)   (p+q)q + pq  |
 ;           |   (p+q)q + pq        p^2 + q^2 |
+
+;; Emacs calculator is amazing, I just used 'C-x r C-SPC' to select a
+;; region, then used 'C-x * r' to copy the matrix region into Emacs
+;; calc, then I used <Enter> to copy it, and then '*' to multiply
+;; them. Here is the result:
+;; 
+;; 1:  [ [ (p + q)^2 + q^2, q*(p + q) + p q ]
+;;       [ q*(p + q) + p q,    q^2 + p^2    ] ]
+
 ;
 ; Note that ((p+q)^2 + q^2) = (p^2 + q^2) + (2pq + q^2)
 ; 

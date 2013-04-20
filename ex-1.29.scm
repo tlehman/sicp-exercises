@@ -24,12 +24,18 @@
   (* (sum f (+ a (/ dx 2)) add-dx b) dx))
 
 (define (integral-simpson f a b n)
-  (let ((h (/ (- b a) n))
-	(cy (lambda (k) 
-	      (let (c (cond ((or (= k 0) (= k n)) 1)
-		       ((even? k) 2)
-		       (else 4)))
-		(* c (f (+ a (* k h)))))))
-    (* (/ h 3) (sum cy 0 inc n)))))
+  (define h (/ (- b a) n))
+  (define (cy k)
+    (define c (cond ((or (= k 0) (= k n)) 1.0)
+		    ((even? k) 2.0) 
+		    (else 4.0)))
+    (* c (f (+ a (* k h)))))
+  (* (/ h 3) (sum cy 0 inc n)))
 
-; TODO: Finish
+;; guile> (integral-simpson cube 0 1 100)
+;; 0.25
+;; guile> (integral-simpson cube 0 1 1000)
+;; 0.25
+;; guile> (integral cube 0 1 0.001)
+;; 0.249999875000001
+

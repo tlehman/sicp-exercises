@@ -28,7 +28,6 @@
 (define tolerance 2e-5)
 (define threshold 10007)
 (define expt fast-expt)
-(define (f y) (/ x (expt y (- n 1))))
 (define (close-enough? v1 v2)
     (< (abs (- v1 v2)) tolerance))
 
@@ -58,18 +57,14 @@
 
 
 (define (nth-root x n)
+  (define (f y) (/ x (expt y (- n 1))))
   (define (try guess)
     (let ((next
-	   ((repeated f (find-repeated-count f)) guess)))
+	   (((repeated average-damp (find-repeated-count f)) f) guess)))
       (if (close-enough? guess next)
 	  next
 	  (try next))))
   (try 1.1))
-
-
-(display (nth-root 27 3))
-
-
 
 
 ; 
@@ -78,4 +73,3 @@
 ; Exercise 1.43. Assume that any arithmetic operations you need are
 ; available as primitives.
 
- ; TODO: Finish this EOF

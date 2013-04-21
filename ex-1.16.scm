@@ -1,6 +1,8 @@
-; Exercise 1.16: Design a procedure that evolves an iterative exponentiation process that uses successive squaring and uses a logarithmic number of steps, as does fast-expt
+; Exercise 1.16: Design a procedure that evolves an iterative
+; exponentiation process that uses successive squaring and uses a
+; logarithmic number of steps, as does fast-expt  
 
-(define (fast-expt b n)       ; Theta(log(n)) space, Theta(log(n)) time
+(define (fast-expt b n)  ; Theta(log(n)) space, Theta(log(n)) time
   (cond ((= n 0) 1)
 	((even? n) (square (fast-expt b (/ n 2))))
 	(else (* b (fast-expt b (- n 1))))))
@@ -11,9 +13,9 @@
     (let ((even? (lambda (m) (= (remainder m 2) 0)))
 	  (square (lambda (m) (* m m))))
       (if (= n 0) a
-	  (iter (if (even? n) a (* a b))   ;  a <--- (n is even?) a : ab
-		(square b)                 ;  b <--- b^2
-		(floor (/ n 2))))))        ;  n <--- floor(n/2)
+	  (iter (if (even? n) a (* a b))  ;  a <--- (n is even?) a : ab
+		(square b)                ;  b <--- b^2
+		(floor (/ n 2))))))       ;  n <--- floor(n/2)
   (iter 1 b n))
 
 

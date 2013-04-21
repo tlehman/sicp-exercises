@@ -9,23 +9,66 @@
 ; converge.
 ; 
 ; On the other hand, if we average damp twice (i.e. use the average
-; damp of y ↦ x/y³), the fixed-point search does not converge.
+; damp of the average damp of y ↦ x/y³), the fixed-point search does
+; not converge.
 ; 
 ; Do some experiments to determine how many average damps are required
 ; to compute the n-th roots as a fixed-point search based upon
 ; repeated average damping of y ↦ x/y^(n-1)
 
+(load "ex-1.16.scm")  ; <--- for fast-expt
 (load "ex-1.43.scm")  ; <--- this loads helpers.scm too
 
-; Recall that sqrt can be defined as 
+; recall that sqrt can be defined as 
 (define (sqrt x)
   (fixed-point (average-damp (lambda (y) (/ x y)))) 1.0)
 
-(define (nth-root x n)
-  (fixed-point ((repeated average-damp k) (lambda (y) (/ x y))) 2.0))
 
-;                                      ^
-; Your goal is to find k    ___________|    as a function of n
+
+(define tolerance 2e-5)
+(define threshold 10007)
+(define expt fast-expt)
+(define (f y) (/ x (expt y (- n 1))))
+(define (close-enough? v1 v2)
+    (< (abs (- v1 v2)) tolerance))
+
+
+(define (fixed-point-converges-before-threshold? f count)
+  
+  (define (try guess i)
+    (let ((next (
+		 (
+		  (repeated average-damp count) f) guess
+		 )
+		))
+      (if (close-enough? guess next)
+	  #t
+	  (if (< i threshold)
+	      (try next (inc i))
+	      #f))))
+
+    (try 1.0 0))
+
+(define (find-repeated-count f)
+  (define (try count)
+    (if (fixed-point-converges-before-threshold? f count)
+	count
+	(try (inc count))))
+  (try 1))
+
+
+(define (nth-root x n)
+  (define (try guess)
+    (let ((next
+	   ((repeated f (find-repeated-count f)) guess)))
+      (if (close-enough? guess next)
+	  next
+	  (try next))))
+  (try 1.1))
+
+
+(display (nth-root 27 3))
+
 
 
 

@@ -66,6 +66,9 @@
 	  (try next))))
   (try 1.1))
 
+; 2^10 = 1024, ergo: 
+(nth-root 1024 10)
+; 1.99999864223555
 
 ; 
 ; Use this to implement a simple procedure for computing n-th roots

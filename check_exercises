@@ -24,4 +24,4 @@ def show_for_chapter(chapter, mode=:all)
 end
 
 mode = (ARGV.first == '-i') ? :incomplete : :all
-show_for_chapter(1, mode)
+show_for_chapter(2, mode)

@@ -26,7 +26,7 @@
 ; still have the same form, but it will access it's second argument
 ; differently, as follows:
 (define (cc amount coin-values)
-  (cons ((= amount 0) 1)
+  (cond ((= amount 0) 1)
 	((or (< amount 0) (no-more? coin-values)) 0)
 	(else
 	 (+ (cc amount
@@ -40,8 +40,20 @@
 ; and no-more? in terms of the primitive operations on list
 ; structures. Does the order of the list coin-values affect the answer
 ; produced by cc? Why or why not?
-		
-		
 
+(define (first-denomination coin-values)
+  (car coin-values))
 
- ; Todo: Finish this EOF
+(define (except-first-denomination coin-values)
+  (cdr coin-values))
+
+(define (no-more? coin-values)
+  (eq? coin-values '()))
+
+; (cc 100 us-coins)
+; => 292
+; (cc 100 (reverse us-coins))
+; => 292
+
+; The order of the list coin-values does not affect the answer, this
+; is because of the commutativity of addition.

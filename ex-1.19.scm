@@ -21,7 +21,7 @@
 ; is the same as using a single transformation T_p'q' of the same
 ; form, and compute p' and q' in terms of p and q. 
 ; This gives us an explicit way to square these transformations, and
-; thus we can compute T^n using succe ssive squaring, as in the
+; thus we can compute T^n using successive squaring, as in the
 ; fast-expt procedure.
 ; 
 ; Put this all together to complete the following procedure, which

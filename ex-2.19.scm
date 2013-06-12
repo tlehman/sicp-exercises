@@ -57,3 +57,7 @@
 
 ; The order of the list coin-values does not affect the answer, this
 ; is because of the commutativity of addition.
+
+; (cc 100 uk-coins)
+; => 104561
+

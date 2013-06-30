@@ -2,6 +2,8 @@
 ; following definitions of some basic list-manipulation operations as
 ; accumulations:
 
+(load "helpers.scm")
+
 (define (map p sequence)
   (accumulate (lambda (x y) <??>) nil sequence))
 

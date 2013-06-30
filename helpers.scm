@@ -104,3 +104,9 @@
 
 (define (newtons-method f guess)
   (fixed-point (newton-transform f) guess))
+
+
+(define (accumulate op first list)
+  (if (null? list) first
+      (op (car list)
+	  (accumulate op first (cdr list)))))

@@ -15,4 +15,9 @@
 ; a polynomial using Horner’s rule. Assume that the coefficients of
 ; the polynomial are arranged in a sequence, from a_0 through a_n.
 
+
+
+(define (hornerl-eval x coefficient-sequence)
+  (accumulate (lamb
+
  ; TODO: Finish this EOF

@@ -5,9 +5,19 @@
 (load "helpers.scm")
 
 (define (map p sequence)
-  (accumulate (lambda (x y) <??>) nil sequence))
+  (accumulate (lambda (x y) (cons (p x) y)) nil sequence))
+
+;(map (lambda (x) (+ x 2)) '(1 2 3))
+; => (3 4 5)
+
+(define (append seq1 seq2)
+  (accumulate cons seq2 seq1))
+
+; (append '(a b) '(c d))
+; => (a b c d)
 
 (define (length sequence)
-  (accumulate (lambda (x y) <??>) nil sequence))
+  (accumulate (lambda (x y) (+ 1 y)) 0 sequence))
 
- ; TODO: Finish this EOF
+;(length '(a b c d))
+; => 4

@@ -1,3 +1,4 @@
+(define nil '())
 (define (id x) x)
 (define (inc n) (+ n 1))
 (define (even? n) (= (remainder n 2) 0))

@@ -16,19 +16,19 @@
 ; the polynomial are arranged in a sequence, from a_0 through a_n.
 
 (load "ex-1.16.scm")  ; <--- for fast-expt
+(load "helpers.scm")
 
 ; for this problem, we need an increasing integer, we will solve this 
 ; problem with a functional iterator pow!
 
-(define (make-pow!)
-  (let ((pow 0))  ; local variable captured by closure below
+(define (new-pow!)
+  (let ((pow 0))  ; local variable captured by closure below (think instance variable)
     (lambda ()
       (let ((oldpow pow))
 	(begin
 	  (set! pow (+ pow 1))
 	  oldpow)))))  ; increment pow
 
-(define pow! (make-pow!))
 
 (define (horner-eval x coefficient-sequence)
   (accumulate (lambda (this-coef higher-terms)
@@ -38,7 +38,20 @@
 		0
 		coefficient-sequence))
 
+
+(define (display-polynomial variable-name coefficient-sequence)
+  (define pow! (new-pow!))
+  (accumulate (lambda (this-coef higher-terms)
+		(string-append (number->string this-coef)
+			       (symbol->string variable-name)
+			       "^"
+			       (number->string (pow!))))
+	      ""
+	      coefficient-sequence))
+
 ; For example, to compute 1 + 3x + 5x^2 + x^5 at x=2, you would eval:
 (horner-eval 2 '(1 3 0 5 0 1))
 ; => 512
+
+(display-polynomial 'x '(1 3 0 5 0 1))
 

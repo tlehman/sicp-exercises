@@ -1,9 +1,8 @@
 ; Exercise 2.35: Redefine count-leaves from Section 2.2.2 as an
 ; accumulation:
 (define (count-leaves t)
-  (accumulate (lambda (first rest)
-		)
+  (accumulate (lambda (first rest))
 	      0
-	      t))
+	      (map <> <>))
 
  ; TODO: Finish this EOF

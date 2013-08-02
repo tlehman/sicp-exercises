@@ -111,3 +111,6 @@
   (if (null? list) first
       (op (car list)
 	  (accumulate op first (cdr list)))))
+
+(define (zip left right)
+  (map cons left right))

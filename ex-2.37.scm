@@ -36,7 +36,10 @@
 		 '(1 2 3))
 ; => (1 3 2)
 
-
+(define (transpose mat)
+  (accumulate-n (lambda (left right) (list right left))
+		nil
+		mat))
 
 
  ; TODO: Finish this EOF

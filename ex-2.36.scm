@@ -23,3 +23,4 @@
 	    (accumulate-n op init (map cdr seqs)))))
 
 ; => (22 26 30)
+

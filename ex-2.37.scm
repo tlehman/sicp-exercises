@@ -25,7 +25,7 @@
 ; computing the other matrix operations. (The procedure accumulate-n
 ; is defined in ex-2.36
 
-(load "ex-2.36")
+(load "ex-2.36.scm")
 
 (define (matrix-*-vector m v)
   (map (lambda (u) (dot-product u v)) m))
@@ -37,9 +37,23 @@
 ; => (1 3 2)
 
 (define (transpose mat)
-  (accumulate-n (lambda (left right) (list right left))
-		nil
-		mat))
+  (map reverse 
+       (accumulate-n (lambda (left right) (append right (list left)))
+		     nil
+		     mat)))
 
+(define (matrix-*-matrix m n)
+  (let ((cols (transpose n)))
+    (map (lambda (row)
+	   (matrix-*-vector cols row))
+	 m)))
 
- ; TODO: Finish this EOF
+(matrix-*-matrix '((1 2)
+		   (3 4))
+
+		 '((5 6)
+		   (7 8)))
+
+;=> ((19 22)
+;    (43 50))
+

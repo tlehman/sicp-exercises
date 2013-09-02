@@ -25,6 +25,17 @@
 ; computing the other matrix operations. (The procedure accumulate-n
 ; is defined in ex-2.36
 
+(load "ex-2.36")
+
+(define (matrix-*-vector m v)
+  (map (lambda (u) (dot-product u v)) m))
+
+(matrix-*-vector '((1 0 0)
+		   (0 0 1)
+		   (0 1 0))
+		 '(1 2 3))
+; => (1 3 2)
+
 
 
 

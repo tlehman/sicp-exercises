@@ -23,8 +23,6 @@
 	      (cdr rest))))
   (iter init seq))
 
- ; TODO: Finish this EOF
-
 (define fold-right accumulate)
 
 ; What are the values of

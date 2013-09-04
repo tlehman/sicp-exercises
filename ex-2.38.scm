@@ -13,6 +13,8 @@
 ; => (* (* (* a b) c) d)
 ; ## infix: (((a * b) * c) * d)
 
+(load "helpers.scm")
+
 (define (fold-left op init seq)
   (define (iter result rest)
     (if (null? rest)

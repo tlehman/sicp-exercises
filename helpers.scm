@@ -114,3 +114,24 @@
 
 (define (zip left right)
   (map cons left right))
+
+(define (enumerate-interval i j)
+  (if (> i j)
+      nil
+      (cons i (enumerate-interval (+ i 1) j))))
+
+(define (flatmap proc seq)
+  (accumulate append nil (map proc seq)))
+
+(define (remove x s)
+  (filter (lambda (y) (not (eq? x y))) s))
+
+(define (permutations s)
+  (if (null? s)
+      (list nil)
+      (flatmap (lambda (x)
+		 (map (lambda (p) (cons x p))
+		      (permutations (remove x s))))
+	       s)))
+
+

@@ -15,10 +15,12 @@
 ; given above.
 
 (define (prime-sum-pairs n)
-  (filter prime-pair? (unique-pairs n)))
+  (filter prime-pair? (eunique-pairs n)))
 
 (define (prime-pair? p)
   (prime? (+ (car p) (cadr p)))) 
 
 ;; (prime-sum-pairs 7)
 ;; ((1 2) (2 3) (1 4) (3 4) (2 5) (1 6) (5 6) (4 7) (6 7))
+
+

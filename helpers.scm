@@ -135,3 +135,14 @@
 	       s)))
 
 
+(define (element-of-set? x s)
+  (cond ((eq? s '())   #f)
+	((equal? (car s) x) #t)
+	(else
+	 (element-of-set? x (cdr s)))))
+
+(define (adjoin-set x s)
+  (if (element-of-set? x s)
+      s
+      (cons x s)))
+
